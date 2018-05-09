@@ -8,7 +8,7 @@ The container is meant to serve a basis for containerised X11 applications. It h
 - Graphical login
 - LDAP authentication (if configured)
 
-Based on a 43MB [Suse container](https://hub.docker.com/_/opensuse/), the container is less than xxx MB in size. Most of this is the X11 window system.
+Based on a 110MB [Suse container](https://hub.docker.com/_/opensuse/), the container is less than 500 MB in size. Most of this is the X11 window system.
 
 ## Usage
 
