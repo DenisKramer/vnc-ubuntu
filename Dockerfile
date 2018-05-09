@@ -20,7 +20,6 @@ COPY assets/home-template /etc/home-template
 
 # --- Configure X11 ---
 COPY assets/xorg.conf /etc/X11/xorg.conf
-COPY assets/syslog.conf /etc/syslog.conf
 
 # --- Slim Login Manager ---
 COPY assets/slim/slim.conf /etc/slim.conf
