@@ -16,7 +16,7 @@ RUN curl https://bootstrap.pypa.io/ez_setup.py | python
 COPY assets/auth/pam.d/* /etc/pam.d/
 COPY assets/auth/nslcd.conf /etc/nslcd.conf
 COPY assets/auth/nsswitch.conf /etc/nsswitch.conf
-COPY assets/home-template /etc/home-template
+
 
 # --- Install slim
 RUN echo 't' | zypper addrepo "https://download.opensuse.org/repositories/X11:/lxde/openSUSE_Leap_42.3/" X11:lxde && \
