@@ -2,9 +2,9 @@
 FROM opensuse:42.3
 
 # --- Install X11, vnc, wm, ... ---
-RUN echo 't' | zypper addrepo "http://download.opensuse.org/repositories/X11:/lxde/openSUSE_Leap_42.3/" X11:lxde && \
+RUN echo 't' | zypper addrepo "http://download.opensuse.org/repositories/X11:/XOrg/openSUSE_Leap_42.3/" X11:Xorg && \
     echo 't' | zypper addrepo "http://download.opensuse.org/repositories/Cloud:/OpenStack:/Master/openSUSE_Leap_42.3/" Cloud:OpenStack:Master && \
-    zypper -n --no-gpg-checks install nss-pam-ldapd python-supervisor xorg-x11-Xvnc dbus-1 slim openbox curl vim && \
+    zypper -n --no-gpg-checks install nss-pam-ldapd python-supervisor dbus-1 openbox xorg-x11-Xvnc curl vim && \
     zypper -n clean --all
 RUN mkdir /run/dbus
 
@@ -17,6 +17,11 @@ COPY assets/auth/pam.d/* /etc/pam.d/
 COPY assets/auth/nslcd.conf /etc/nslcd.conf
 COPY assets/auth/nsswitch.conf /etc/nsswitch.conf
 COPY assets/home-template /etc/home-template
+
+# --- Install slim
+RUN echo 't' | zypper addrepo "https://download.opensuse.org/repositories/X11:/lxde/openSUSE_Leap_42.3/" X11:lxde && \
+    zypper -n --no-gpg-checks install slim && \
+    zypper clean --all
 
 # --- Configure X11 ---
 COPY assets/xorg.conf /etc/X11/xorg.conf
@@ -39,7 +44,8 @@ COPY assets/openbox/menu.xml /etc/xdg/openbox/menu.xml
 # COPY assets/auth/pam_ldap.conf /etc/pam_ldap.conf
 
 # --- Install urxvt terminal ---
-RUN zypper -n install rxvt-unicode urxvt-font-size
+RUN zypper -n --no-gpg-checks install rxvt-unicode && \
+    zypper clean --all
 COPY assets/urxvt/perl /usr/lib/urxvt/perl
 COPY assets/Xresources /etc/X11/Xresources
 
@@ -50,6 +56,9 @@ RUN echo 't' | zypper addrepo http://download.opensuse.org/repositories/M17N:/fo
 
 COPY assets/xinit/xinitrc.d/* /etc/X11/xinit/xinitrc.d/
 COPY assets/xinit/xinitrc.d/00-terminal-prompt /etc/bash.bashrc.local
+
+COPY assets/openbox/autostart /etc/xdg/openbox/autostart
+RUN chmod a+x /etc/xdg/openbox/autostart
 
 EXPOSE 5900
 CMD ["/usr/bin/supervisord","-c","/etc/supervisord.conf"]
