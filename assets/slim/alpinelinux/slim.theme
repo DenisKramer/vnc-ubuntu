@@ -1,5 +1,5 @@
 
-# Messages 
+# Messages
 msg_color		#FFFFFF
 msg_font		Sans:size=16:bold
 msg_shadow_xoffset	1
@@ -18,12 +18,12 @@ input_pass_x            160
 input_pass_y            163
 
 input_font          	Sans:size=12
-input_color		#000000
+input_color		          #000000
 input_bgcolor           #000000
 input_fgcolor           #ffffff
 
 # Welcome message
-welcome_font          	Sans:size=20:bold
+welcome_font          	Sans:size=16:bold
 welcome_color          	#ffffff
 welcome_x              	33
 welcome_y              	55

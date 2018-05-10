@@ -60,5 +60,8 @@ COPY assets/xinit/xinitrc.d/00-terminal-prompt /etc/bash.bashrc.local
 COPY assets/openbox/autostart /etc/xdg/openbox/autostart
 RUN chmod a+x /etc/xdg/openbox/autostart
 
+# --- Make sure home directory template folder exists
+RUN mkdir -p /etc/home-template
+
 EXPOSE 5900
 CMD ["/usr/bin/supervisord","-c","/etc/supervisord.conf"]
