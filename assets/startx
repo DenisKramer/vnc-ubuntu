@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Define default values for parameters
-GEOMETRY=${GEOMETRY:-1600x800}
-RFBPORT=${RFBPORT:-5900}
+export GEOMETRY=${GEOMETRY:-1600x800}
+export RFBPORT=${RFBPORT:-5900}
+export DISPLAY=${DISPLAY::0}
 
 # Create USER if needed
 if ! [ -z ${USERNAME+x} ]; then
@@ -12,4 +13,4 @@ else
 fi
 
 # Start X and VNC server
-su ${USERNAME} -c "xinit /etc/X11/xinit/xinitrc -- /usr/bin/Xtightvnc :0 -desktop X -auth /root/.Xauthority -geometry ${GEOMETRY} -depth 24 -rfbwait 120000 -rfbport ${RFBPORT}"
+su ${USERNAME} -c "xinit /etc/X11/xinit/xinitrc -- /usr/bin/Xtightvnc -desktop X -auth /root/.Xauthority -geometry 1600x800 -depth 24 -rfbwait 120000 -rfbport 5900"

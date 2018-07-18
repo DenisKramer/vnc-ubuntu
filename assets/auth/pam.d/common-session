@@ -1,9 +1,0 @@
-# basic PAM configuration for Alpine.
-
-session	required	pam_limits.so
-session	required	pam_unix.so	try_first_pass
-session optional  pam_ldap.so minimum_uid=1000 try_first_pass
-session	optional	pam_umask.so
-session	optional	pam_systemd.so
-session required  pam_mkhomedir.so  skel=/etc/home-template umask=0002
-session	optional	pam_env.so

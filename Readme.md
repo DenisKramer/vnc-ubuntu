@@ -6,9 +6,6 @@ The container is meant to serve a basis for containerised X11 applications. It h
 
 - Openbox minimal Window Manager
 - Graphical login (not configured by default)
-- LDAP authentication (if configured)
-
-Based on a 110MB [Suse container](https://hub.docker.com/_/opensuse/), the container is less than 500 MB in size. Most of this is the X11 window system.
 
 ## Usage
 
@@ -40,18 +37,7 @@ A connecting VNC client will be presented with a login window for the first time
 The usual `useradd/passwd` feature of linux is available. To add a user to a running container with name `vnc-alpine` use:
 
 ```bash
-  docker exec -it vnc-suse adduser <username>
-```
-
-### Ldap support
-
-The container is ldap-ready. To enable authentication against an LDAP server, provide a '''/etc/pam_ldap.conf''' file. The file format is described in the [pam man pages](https://linux.die.net/man/5/pam_ldap). An example is given below.
-
-```
-uri ldap://ldap.example.com
-base dc=example,dc=com
-logdir /var/log/ldap
-pam_login_attribute sAMAccountName
+  docker exec -it vnc-ubuntu adduser <username>
 ```
 
 ## Openbox Window Manager
