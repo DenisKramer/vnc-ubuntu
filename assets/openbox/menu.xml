@@ -8,7 +8,7 @@
 <menu id="root-menu" label="Openbox 3">
   <!-- This requires the presence of the 'menu' package to work -->
   <item label="Terminal">
-    <action name="Execute"><execute>/usr/bin/urxvt</execute></action>
+    <action name="Execute"><execute>/usr/bin/urxvt -l -e /bin/bash</execute></action>
   </item>
   <separator />
   <menu id="client-list-menu" />

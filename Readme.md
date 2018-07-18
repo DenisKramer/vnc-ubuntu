@@ -1,6 +1,6 @@
-# vnc-suse
+# vnc-ubuntu
 
-This container provides a [VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing)-enabled container based on [OpenSuse](https://www.opensuse.org/).
+This container provides a [VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing)-enabled container based on [Ubuntu](https://www.ubuntu.com/).
 
 The container is meant to serve a basis for containerised X11 applications. It has the following features:
 

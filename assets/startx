@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Define default values for parameters
+GEOMETRY=${GEOMETRY:-1600x800}
+RFBPORT=${RFBPORT:-5900}
+
+# Create USER if needed
+if ! [ -z ${USERNAME+x} ]; then
+  useradd ${USERID:+-u ${USERID}} ${USERNAME}
+else
+  USERNAME=$(whoami) # Should default to root
+fi
+
+# Start X and VNC server
+su ${USERNAME} -c "xinit /etc/X11/xinit/xinitrc -- /usr/bin/Xtightvnc :0 -desktop X -auth /root/.Xauthority -geometry ${GEOMETRY} -depth 24 -rfbwait 120000 -rfbport ${RFBPORT}"

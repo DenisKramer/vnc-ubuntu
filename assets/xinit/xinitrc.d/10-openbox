@@ -1,0 +1,5 @@
+# Set background, load resources, and start window Manager
+
+xrdb -load /etc/X11/Xresources/Xresources
+xsetroot -solid "#99b3ff" &
+openbox
