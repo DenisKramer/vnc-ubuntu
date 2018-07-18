@@ -5,7 +5,7 @@ This container provides a [VNC](https://en.wikipedia.org/wiki/Virtual_Network_Co
 The container is meant to serve a basis for containerised X11 applications. It has the following features:
 
 - Openbox minimal Window Manager
-- Graphical login
+- Graphical login (not configured by default)
 - LDAP authentication (if configured)
 
 Based on a 110MB [Suse container](https://hub.docker.com/_/opensuse/), the container is less than 500 MB in size. Most of this is the X11 window system.
@@ -15,12 +15,23 @@ Based on a 110MB [Suse container](https://hub.docker.com/_/opensuse/), the conta
 The container runs a VNC server on port 5900. This port has to be mapped for VNC clients to access it:
 
 ```bash
-docker run -d -p 5900:5900 kramergroup/vnc-suse
+docker run -d -p 5900:5900 kramergroup/vnc-ubuntu
 ```
 
 Once the container is running, point a VNC viewer to `localhost:5900`.
 
-## User login
+### Environment variables
+
+The behaviour of the container can be controlled through a number of environment variables.
+
+| Name     | Default  | Description                                           |
+|:---------|:---------|:------------------------------------------------------|
+| GEOMETRY | 1600x900 | Display dimensions                                    |
+| RFBPORT  | 5900     | The VNC server port                                   |
+| USERNAME | root     | The default user username (will be created if needed) |
+| USERID   | auto     | The UID of the default user                           |
+
+## Graphical User login (optional)
 
 A connecting VNC client will be presented with a login window for the first time only.  **Note that terminating the VNC connection is not sufficient to logout the user!** There is no default user configured.
 
