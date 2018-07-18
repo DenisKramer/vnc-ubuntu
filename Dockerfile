@@ -3,7 +3,8 @@ FROM ubuntu:18.10
 
 # --- Install X11, vnc, wm, ... ---
 RUN apt-get -y update && \
-    apt-get -y install supervisor curl vim tightvncserver xinit slim openbox
+    apt-get -y install supervisor curl vim tightvncserver xinit slim openbox rxvt fonts-noto && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # --- Configure supervisord ---
 COPY assets/supervisor.conf /etc/supervisord.conf
@@ -33,12 +34,8 @@ COPY assets/openbox/menu.xml /etc/xdg/openbox/menu.xml
 # COPY assets/auth/pam_ldap.conf /etc/pam_ldap.conf
 
 # --- Install urxvt terminal ---
-RUN apt-get -y install rxvt
 COPY assets/urxvt/perl /usr/lib/urxvt/perl
 COPY assets/Xresources /etc/X11/Xresources
-
-# --- Fonts etc. ---
-RUN apt-get -y install fonts-noto
 
 COPY assets/xinit/xinitrc.d/* /etc/X11/xinit/xinitrc.d/
 COPY assets/xinit/xinitrc /etc/X11/xinit/xinitrc
