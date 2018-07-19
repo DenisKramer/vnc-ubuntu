@@ -1,6 +1,6 @@
 *foreground: #cccccc
 *foreground_bold: #a8a19f
-*cursor: #a8a19f
+
 *background:       #99b3ff
 !!*background: rgba(0, 0, 0, .7)
 
@@ -37,6 +37,7 @@ URxvt.scrollBar:	false
 URxvt.cursorColor:	white
 
 !! Extensions
+URxvt.perl-lib: /usr/lib/urxvt/perl
 URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select
 URxvt.colorUL:		#4682B4
 

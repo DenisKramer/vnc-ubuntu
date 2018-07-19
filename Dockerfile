@@ -3,8 +3,16 @@ FROM ubuntu:18.10
 
 # --- Install X11, vnc, wm, ... ---
 RUN apt-get -y update && \
-    apt-get -yq install supervisor curl vim tightvncserver xinit slim openbox rxvt fonts-noto && \
+    DEBIAN_FRONTEND=noninteractive apt-get -yq install keyboard-configuration && \
+    apt-get -yq install supervisor curl vim xinit slim openbox rxvt fonts-noto x11-xserver-utils && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN curl -L -o tigervnc-1.9.0.x86_64.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=tigervnc-1.9.0.x86_64.tar.gz && \
+    tar xvzf tigervnc-1.9.0.x86_64.tar.gz -C / --strip-components=1
+
+# --- Add screen resolutions for xrandr
+RUN curl -L -o /sbin/add-vnc-mode https://raw.githubusercontent.com/ebertland/home-bin/master/add-vnc-mode && \
+    chmod a+x /sbin/add-vnc-mode
 
 # --- Configure supervisord ---
 COPY assets/supervisor.conf /etc/supervisord.conf
