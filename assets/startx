@@ -7,7 +7,7 @@ export DISPLAY=${DISPLAY::0}
 
 # Create USER if needed
 if ! [ -z ${USERNAME+x} ]; then
-  useradd ${USERID:+-u ${USERID}} ${USERNAME}
+  useradd -m ${USERID:+-u ${USERID}} ${USERNAME}
 else
   USERNAME=$(whoami) # Should default to root
 fi
